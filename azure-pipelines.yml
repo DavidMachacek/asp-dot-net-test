@@ -17,7 +17,7 @@ variables:
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
-  pool-name: 'ubuntu-latest'
+  pool-name: 'AKS'
 
 stages:
 - stage: Build
