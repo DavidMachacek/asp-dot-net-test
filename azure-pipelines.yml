@@ -31,7 +31,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
-          buildah $(dockerfilePath) -t $(containerRegistry)/$(imageRepository):$(tag)
+          buildah bud $(dockerfilePath) -t $(containerRegistry)/$(imageRepository):$(tag)
           buildah push $(containerRegistry)/$(imageRepository):$(tag)
         failOnStderr: false
     #- task: Docker@2
