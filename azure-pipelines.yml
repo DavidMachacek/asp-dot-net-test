@@ -28,18 +28,18 @@ stages:
     pool:
       name: $(pool-name)
     steps:
-    - task: CmdLine@2
-      inputs:
-        script: |
-          buildah $(dockerfilePath) -t $(containerRegistry)/$(imageRepository):$(tag)
-          buildah push $(containerRegistry)/$(imageRepository):$(tag)
-        failOnStderr: false
-    #- task: Docker@2
-    #  displayName: Build and push an image to container registry
+    #- task: CmdLine@2
     #  inputs:
-    #    command: buildAndPush
-    #    repository: $(imageRepository)
-    #    dockerfile: $(dockerfilePath)
-    #    containerRegistry: $(dockerRegistryServiceConnection)
-    #    tags: |
-    #      $(tag)
+    #    script: |
+    #      buildah $(dockerfilePath) -t $(containerRegistry)/$(imageRepository):$(tag)
+    #      buildah push $(containerRegistry)/$(imageRepository):$(tag)
+    #    failOnStderr: false
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
