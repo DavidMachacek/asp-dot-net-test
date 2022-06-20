@@ -31,8 +31,9 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
-          /kaniko/executor --dockerfile $(dockerfilePath) --context $(Build.SourcesDirectory)/Test-ASP-DotNet --destination $(containerRegistry)/$(imageRepository):latest
+          /kaniko/executor --dockerfile $(dockerfilePath) --context $(Build.SourcesDirectory)/Test-ASP-DotNet --no-push
         failOnStderr: false
+          #--destination $(containerRegistry)/$(imageRepository):latest
     # podman build $(dockerfilePath) -t $(containerRegistry)/$(imageRepository):$(tag)
     # podman push $(containerRegistry)/$(imageRepository):$(tag)
     #- task: Docker@2
